@@ -1,6 +1,7 @@
-function outputImage = highPassFilter(image,filter)
+function outputImage = highPassFilter(image,filter, d0, nInput)
     [rows, cols, colorChannels] = size(image);
     
+    disp(filter);
     % Menentukan parameter padding, biasanya P = 2*rows dan Q = 2*cols
     P = 2*rows;
     Q = 2*cols;
@@ -29,7 +30,8 @@ function outputImage = highPassFilter(image,filter)
         % transformasi fourier
         F = fftshift(fft2(currImg));
 
-        D0 = 0.05*P; % cut-off frequency
+        %D0 = 0.05*P; % cut-off frequency
+        D0 = d0;
 
         % range dari variabel
         u = 0:(P-1);
@@ -53,7 +55,8 @@ function outputImage = highPassFilter(image,filter)
         elseif filter == "Ideal"
             H = 1 - double(D<=50);
         elseif filter == "Butterwoth"
-            n = 1;
+            % n = 1
+            n = nInput;
             H = 1 - 1./(1 + (D./D0).^(2*n));
         end
 

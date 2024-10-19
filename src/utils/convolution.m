@@ -1,6 +1,7 @@
 function outputImage = convolution(image, convMatrix)
     [rows, cols, colorChannels] = size(image);
     [rowsConv, colsConv] = size(convMatrix);
+    
     outputImage = zeros(rows, cols, 'uint8');
 
     for i = ((rowsConv+1)/2):(rows-((rowsConv-1)/2))
