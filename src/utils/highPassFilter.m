@@ -49,7 +49,7 @@ function outputImage = highPassFilter(image,filter, d0, nInput)
         
         H = 0;
 
-        % melakukan filtering berdasarkan jenis filter
+        %wiene melakukan filtering berdasarkan jenis filter
         if filter == "Gaussian"
             H = 1 - exp(-(D.^2)./(2*(D0^2)));
         elseif filter == "Ideal"
