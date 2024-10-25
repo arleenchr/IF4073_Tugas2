@@ -54,7 +54,7 @@ function outputImage = highPassFilter(image,filter, d0, nInput)
             H = 1 - exp(-(D.^2)./(2*(D0^2)));
         elseif filter == "Ideal"
             H = 1 - double(D<=50);
-        elseif filter == "Butterwoth"
+        elseif filter == "Butterworth"
             % n = 1
             n = nInput;
             H = 1 - 1./(1 + (D./D0).^(2*n));

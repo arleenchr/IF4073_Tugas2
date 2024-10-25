@@ -1,10 +1,10 @@
-I = im2double(imread('images/7-1.jpg'));
+I = im2double(imread('images/7-3.jpg'));
 imshow(I);
 
-LEN = 40; THETA = 10;
+LEN =  100; THETA = 0.01;
 PSF = fspecial('motion', LEN, THETA);
-blurred = motionBluring(I,PSF);
-%blurred = I;
+%blurred = motionBluring(I,PSF);
+blurred = I;
 
 noise_mean = 0;
 noise_var = 0.0001;

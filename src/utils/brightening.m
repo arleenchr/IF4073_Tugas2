@@ -1,4 +1,4 @@
-function outputImage = brightening(image)
+function outputImage = brightening(image, brightnessFactor)
     [rows, cols, colorChannels] = size(image);
  
     % Menentukan parameter padding, biasanya P = 2*rows dan Q = 2*cols
@@ -31,7 +31,7 @@ function outputImage = brightening(image)
         radius = 100;                  % Tentukan radius untuk memodifikasi komponen frekuensi rendah
         centerX = P / 2;
         centerY = Q / 2;
-        brightness_factor = 2;      % Faktor untuk meningkatkan kecerahan (sesuaikan nilainya)
+        brightness_factor = brightnessFactor;      % Faktor untuk meningkatkan kecerahan (sesuaikan nilainya)
         
         for i = 1:P
             for j = 1:Q
