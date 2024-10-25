@@ -1,4 +1,4 @@
-function smoothedImage = spatialSmooth(image, filter, filterSize)
+function smoothedImage = spatialSmooth(image, filter, filterSize, sigma)
     % Membuat mean filter n x n berdasarkan jenis filter
     if filter == "Mean"
         kernel = ones(filterSize) / (filterSize * filterSize);
