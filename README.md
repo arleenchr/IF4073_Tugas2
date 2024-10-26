@@ -10,7 +10,7 @@
 &emsp;1. <b>Konvolusi</b> <br>
 Setelah memasukkan citra yang ingin diproses, masukkan convolution mask ke dalam kolom yang disediakan. <br>
 &emsp;2. <b>Spatial Smoothing</b> <br>
-Masukkan parameter filter size dan sigma.
+Masukkan parameter filter size dan sigma.<br>
 &emsp;3. <b>Low and High Pass Filtering</b><br>
 Pilih filter ideal, gaussian, ataupun butterworth. Kemudian masukkan parameter D0, juga n khusus untuk butterworth. <br>
 &emsp;4. <b>Image Brightness</b><br>
