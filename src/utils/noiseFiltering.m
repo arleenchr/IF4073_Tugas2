@@ -1,15 +1,15 @@
 function outputImage = noiseFiltering(image, filter, varargin)
     image = double(image);
-    [rows, cols, channels] = size(image);  % Get the number of channels
-    outputImage = zeros(rows, cols, channels);  % Initialize output for each channel
+    [rows, cols, channels] = size(image); 
+    outputImage = zeros(rows, cols, channels);
 
     % Ukuran window 3x3
     windowSize = 3;
     padSize = floor(windowSize / 2);
     paddedImage = padarray(image, [padSize padSize], 'symmetric');
 
-    % Penapisan for each channel
-    for c = 1:channels  % Loop over each color channel
+    % Penapisan untuk tiap kanal warna
+    for c = 1:channels
         for i = 1:rows
             for j = 1:cols
                 % Ekstrak window untuk channel c
@@ -55,5 +55,5 @@ function outputImage = noiseFiltering(image, filter, varargin)
         end
     end
 
-    outputImage = uint8(outputImage);  % Convert back to uint8
+    outputImage = uint8(outputImage);
 end
