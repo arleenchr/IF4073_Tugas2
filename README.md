@@ -1,5 +1,5 @@
-# Image Enhancement App
-> Aplikasi yang memiliki fungsi-fungsi untuk melakukan perbaikan citra dengan ranah frekuensi. Dibuat untuk memenuhi Tugas 2 IF4073 Pemrosesan Citra Digital
+# Penapisan Citra dalam Ranah Spasial, Ranah Frekuensi, dan Restorasi Citra
+> Aplikasi ini memiliki fungsi-fungsi untuk melakukan penapisan citra dalam ranah spasial dan frekuensi. Dibuat untuk memenuhi Tugas 2 IF4073 Pemrosesan Citra Digital
 
 ## How to Run
 - Clone repository ini ke local komputer dengan command `git clone https://github.com/arleenchr/IF4073_Tugas2.git`
