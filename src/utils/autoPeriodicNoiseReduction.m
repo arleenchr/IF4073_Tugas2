@@ -1,4 +1,4 @@
-function [outputImage, fourierSpectrum] = autoPeriodicNoiseReduction(image, notchSize, threshold)
+function outputImage = autoPeriodicNoiseReduction(image, notchSize, threshold)
     % Konversi ke grayscale jika berwarna
     if size(image, 3) == 3
         image = rgb2gray(image);
@@ -10,10 +10,6 @@ function [outputImage, fourierSpectrum] = autoPeriodicNoiseReduction(image, notc
     imageFFT = fftshift(fft2(image));
     magnitudeFFT = abs(imageFFT);
 
-    % Compute and normalize the Fourier Spectrum for display
-    fourierSpectrum = log(1 + magnitudeFFT);  % Log scale to enhance visibility
-    fourierSpectrum = uint8(255 * mat2gray(fourierSpectrum));
-
     % Deteksi spikes dengan threshold
     noisePeaks = magnitudeFFT > threshold * max(magnitudeFFT(:));
     noisePeaks = noisePeaks .* magnitudeFFT;  % Mask
@@ -21,8 +17,6 @@ function [outputImage, fourierSpectrum] = autoPeriodicNoiseReduction(image, notc
     % Inisialisasi notch filter mask dengan 1
     notchFilter = ones(rows, cols);
 
-    % Ukuran notch (prediksi)
-    %notchSize = 5;
     sigma = notchSize; % gaussian
     %n = 1.5; % butterworth
 
@@ -34,12 +28,9 @@ function [outputImage, fourierSpectrum] = autoPeriodicNoiseReduction(image, notc
     for k = 1:length(peakRows)
         row = peakRows(k);
         col = peakCols(k);
-        %disp(row);
-        %disp(col);
-        %disp('---');
 
-        % Skip the center peak (DC component)
-        if row > centerRow - notchSize && row < centerRow + notchSize && col > centerCol - notchSize && col < centerCol + notchSize
+        % Melewati spike di tengah
+        if abs(row - centerRow) < notchSize && abs(col - centerCol) < notchSize
             continue;
         end
         
@@ -72,7 +63,8 @@ function [outputImage, fourierSpectrum] = autoPeriodicNoiseReduction(image, notc
 
     % Normalisasi dengan range dan intensitas aslinya
     filteredImage = filteredImage - min(filteredImage(:));
-    filteredImage = filteredImage * (max(image(:)) / max(filteredImage(:)));
+    filteredImage = filteredImage * (255 / max(filteredImage(:)));
+    %filteredImage = 255 * (filteredImage / max(filteredImage(:)));
     
     % Convert to uint8 format for display
     outputImage = uint8(filteredImage);

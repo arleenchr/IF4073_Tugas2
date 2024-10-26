@@ -1,7 +1,7 @@
 % Set an appropriate threshold for noise peak detection
 threshold = 0.025;  % Adjust based on the intensity of noise
 
-image = imread('images/6-6.png');
+image = imread('images/6-7.png');
 %image = imread('images/6-5.jpg');
 figure; imshow(image);
 
