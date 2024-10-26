@@ -11,5 +11,5 @@ figure; imshow(noisyImage);
 %imageOutput = noiseFiltering(noisyImage,'harmonic mean');
 %imageOutput = noiseFiltering(noisyImage,'contraharmonic mean', 1.5);
 %imageOutput = noiseFiltering(noisyImage,'midpoint');
-imageOutput = noiseFiltering(noisyImage,'alpha-trimmed mean', 2);
+imageOutput = noiseFiltering(noisyImage,'alpha-trimmed mean', 1);
 figure; imshow(imageOutput);

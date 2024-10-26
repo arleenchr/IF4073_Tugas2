@@ -45,8 +45,13 @@ function outputImage = noiseFiltering(image, filter, varargin)
                     case 'alpha-trimmed mean'
                         d = varargin{1};  % Banyaknya elemen yang dipangkas
                         sortedWindow = sort(window);
-                        trimmedWindow = sortedWindow(d + 1:end - d);
-                        outputImage(i, j, c) = mean(trimmedWindow);
+                        if d >= windowSize / 2
+                            warning('Trim value d is too large; setting to zero.');
+                            outputImage(i, j, c) = mean(sortedWindow);
+                        else
+                            trimmedWindow = sortedWindow(d + 1:end - d);
+                            outputImage(i, j, c) = mean(trimmedWindow);
+                        end
 
                     otherwise
                         error('Unknown filter type');
