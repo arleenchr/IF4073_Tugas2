@@ -18,7 +18,6 @@ function outputImage = autoPeriodicNoiseReduction(image, notchSize, threshold)
     notchFilter = ones(rows, cols);
 
     sigma = notchSize; % gaussian
-    %n = 1.5; % butterworth
 
     centerRow = floor(rows / 2) + 1;
     centerCol = floor(cols / 2) + 1;
@@ -34,25 +33,13 @@ function outputImage = autoPeriodicNoiseReduction(image, notchSize, threshold)
             continue;
         end
         
-        % Buang frekuensi yang mengganggu jadi 0
-        %notchFilter(max(row-notchSize,1):min(row+notchSize,rows), ...
-        %            max(col-notchSize,1):min(col+notchSize,cols)) = 0;
-
-        % Compute Gaussian mask for each peak
+        % Menghitung penapisan Gaussian
         for i = 1:rows
             for j = 1:cols
                 d = sqrt((i - row)^2 + (j - col)^2);
                 notchFilter(i, j) = notchFilter(i, j) * (1 - exp(-d^2 / (2 * sigma^2)));
             end
         end
-
-        % Apply Butterworth formula for each peak
-        %for i = 1:rows
-        %    for j = 1:cols
-        %        d = sqrt((i - row)^2 + (j - col)^2);
-        %        notchFilter(i, j) = notchFilter(i, j) * (1 / (1 + (d / notchSize)^(2 * n)));
-        %    end
-        %end
     end
 
     % Masking ke citra
@@ -64,11 +51,7 @@ function outputImage = autoPeriodicNoiseReduction(image, notchSize, threshold)
     % Normalisasi dengan range dan intensitas aslinya
     filteredImage = filteredImage - min(filteredImage(:));
     filteredImage = filteredImage * (255 / max(filteredImage(:)));
-    %filteredImage = 255 * (filteredImage / max(filteredImage(:)));
     
     % Convert to uint8 format for display
     outputImage = uint8(filteredImage);
-    
-    % Normalize and convert back to uint8 format
-    %outputImage = uint8(mat2gray(filteredImage) * 255);
 end
