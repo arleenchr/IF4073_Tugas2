@@ -53,7 +53,7 @@ function outputImage = highPassFilter(image,filter, d0, nInput)
         if filter == "Gaussian"
             H = 1 - exp(-(D.^2)./(2*(D0^2)));
         elseif filter == "Ideal"
-            H = 1 - double(D<=50);
+            H = 1 - double(D<=D0);
         elseif filter == "Butterworth"
             % n = 1
             n = nInput;
